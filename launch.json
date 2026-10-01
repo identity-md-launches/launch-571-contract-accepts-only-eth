@@ -1,0 +1,22 @@
+{
+  "kind": "evm_project",
+  "token": {
+    "contract": "LaunchToken",
+    "name": "OneEthCap",
+    "symbol": "ONECAP",
+    "decimals": 18
+  },
+  "contracts": [
+    {
+      "contract": "OneEthCap",
+      "constructorArgs": ["$owner"]
+    }
+  ],
+  "pool": {
+    "pairedCurrency": "0x0000000000000000000000000000000000000000",
+    "fee": 3000,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "notes": "LaunchToken has no constructor arguments. OneEthCap uses the policy-resolved $owner as its immutable, nonzero beneficiary. It accepts positive native ETH deposits through receive() or deposit(), up to 1 ETH cumulatively over its lifetime. Deposits exceeding the remaining capacity revert in full. Anyone may call sweep() to send the entire ETH balance to the beneficiary; sweeping does not restore deposit capacity, and a beneficiary that rejects ETH causes the sweep to revert. Unknown calldata and token receiver hooks revert. Unsolicited ERC-20 transfers cannot be refused and have no recovery path. Forced ETH bypasses deposit accounting and can make the balance exceed 1 ETH; it is included in sweeps. No initialization calls are required. The factory supplies liquidity, MerkleDistributor and the initialization-only pool guard."
+}
